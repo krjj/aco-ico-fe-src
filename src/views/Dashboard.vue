@@ -4,9 +4,9 @@
 
         <div class="inner-col">
 
-            <a href="" class="mobile-logo d-md-none">
+            <div class="mobile-logo d-md-none">
                 <img src="img/logo.png" alt="">
-            </a>
+            </div>
 
             <div class="btn-menu btn-menu--left">
                 <div></div>
@@ -61,9 +61,9 @@
                 </svg>
             </div>
 
-            <a href="" class="logo">
-                <img class="logo__img" src="img/logo.png" alt="">
-                <span class="logo__text"  style="margin-left:-20px">ACO Coins</span>
+            <a class="logo">
+                <img class="logo__img" src="../assets/img/asco.png" alt="">
+                <span class="logo__text"  style="margin-left: 10px">ACO Coin</span>
             </a>
 
             <ul class="menu">
@@ -129,7 +129,7 @@
                     </router-link>
                 </li>
                 <li class="menu__item">
-                    <a class="menu__link" href="">
+                    <router-link class="menu__link" to="/dashboard">
                         <span class="menu__link-icon">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="18px"
                                 height="16px" viewBox="-12 15 18 16" style="enable-background:new -12 15 18 16;" xml:space="preserve">
@@ -142,7 +142,7 @@
                         <span class="menu__link-text" style="opacity:0.25; cursor:not-allowed">
                             Verification
                         </span>
-                    </a>
+                    </router-link>
                 </li>
             </ul>
 

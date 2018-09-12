@@ -17,7 +17,7 @@
 
 							<div class="input-wrp">
 								<i class="textfield-ico fontello-eye"></i>
-								<input v-model="password" class="textfield" type="text" value="" placeholder="Password" />
+								<input v-model="password" type="password" class="textfield" value="" placeholder="Password" />
 							</div>
 
 							<p>

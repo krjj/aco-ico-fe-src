@@ -31,12 +31,12 @@
 
 									<div class="input-wrp">
 										<i class="textfield-ico fontello-eye"></i>
-										<input v-model="password" class="textfield" type="text" value="" placeholder="Password" />
+										<input v-model="password" type="password" class="textfield" value="" placeholder="Password" />
 									</div>
 
 									<div class="input-wrp">
 										<i class="textfield-ico fontello-eye"></i>
-										<input v-model="cpassword" class="textfield" type="text" value="" placeholder="Confirm Password" />
+										<input v-model="cpassword" class="textfield" type="password" value="" placeholder="Confirm Password" />
 									</div>
 
 									<p>
