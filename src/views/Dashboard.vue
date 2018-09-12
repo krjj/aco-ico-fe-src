@@ -5,7 +5,7 @@
         <div class="inner-col">
 
             <div class="mobile-logo d-md-none">
-                <img src="img/logo.png" alt="">
+               
             </div>
 
             <div class="btn-menu btn-menu--left">
@@ -62,8 +62,8 @@
             </div>
 
             <a class="logo">
-                <img class="logo__img" src="../assets/img/asco.png" alt="">
-                <span class="logo__text"  style="margin-left: 10px">ACO Coin</span>
+                <img style="height:64px" src="../assets/img/sitelogo.png" alt="">
+                <span class="logo__text"  style="margin-left: 10px"></span>
             </a>
 
             <ul class="menu">
