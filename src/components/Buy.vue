@@ -68,6 +68,9 @@
                                             <div id="DIV_36">
                                                 Recommended gas price is 10 Gwei. You will be able to get tokens right after purchase.
                                             </div>
+                                            <div id="DIV_36">
+                                                <a href="https://coinsutra.com/myetherwallet-step-step-introduction-guide-beginners/">Instructions to use MyEtherWallet for transfer</a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div id="DIV_43" v-show="pym === 'btc'">
