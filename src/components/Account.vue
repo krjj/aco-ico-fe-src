@@ -320,12 +320,12 @@ export default {
       firstname: this.$store.state.userdata.firstname,
       lastname: this.$store.state.userdata.lastname,
       email: this.$store.state.userdata.email,
-      dobd: "11",
-      dobm: "November",
-      doby: "1995",
+      dobd: "01",
+      dobm: "January",
+      doby: "1990",
       address: "--",
-      country: "INDIA",
-      city: "MUMBAI",
+      country: "--",
+      city: "--",
       postcode: "400001"
     };
   },

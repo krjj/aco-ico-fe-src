@@ -48,6 +48,13 @@
                                                     <span id="SPAN_26">BTC</span>
                                                 </label>
                                             </div>
+                                            <div id="DIV_22">
+                                                <label id="LABEL_23">
+                                                    <input type="radio" name="paymentmethod" value="fiat" id="INPUT_18" v-model="pym" v-on:change="pys()"/>
+                                                    <span v-bind:id="pymf"></span>
+                                                    <span id="SPAN_26">Fiat</span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div id="DIV_27" v-show="pym === 'eth'">
@@ -95,6 +102,39 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="DIV_43" v-show="pym === 'fiat'">
+                                        <div id="DIV_44">
+                                            <label for="c380af47_btc-address" id="LABEL_45">
+                                                Bank 1 - Instructions
+                                            </label>
+                                            <div id="DIV_46">
+                                                <div id="DIV_47">
+                                                    <div id="DIV_48">
+                                                        <textarea type="text" v-model="fiatData1" name="fiat-address" id="INPUT_49" style="padding: 15px;height: 100px;background-color: #fafafa;" readonly/>
+                                                    </div>
+                                                    <div id="DIV_50">
+                                                        <button v-clipboard:copy="fiatData1" id="A_35">Copy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div id="DIV_44">
+                                            <label for="c380af47_btc-address" id="LABEL_45">
+                                                Bank 2 - Instructions
+                                            </label>
+                                            <div id="DIV_46">
+                                                <div id="DIV_47">
+                                                    <div id="DIV_48">
+                                                        <textarea type="text" v-model="fiatData2" name="fiat-address" id="INPUT_49" style="padding: 15px;height: 100px;background-color: #fafafa;" readonly/>
+                                                    </div>
+                                                    <div id="DIV_50">
+                                                        <button v-clipboard:copy="fiatData2" id="A_35">Copy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -115,8 +155,11 @@ export default {
       pym: "eth",
       pyme: "SPAN_19",
       pymb: "SPAN_25",
-      ethAddress : '0x4137ad3f84ac257efb9b1d844bd2a5695aec00b..',
-      btcAddress : '1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4x..'
+      pymf: "SPAN_25",
+      ethAddress: "0x4137ad3f84ac257efb9b1d844bd2a5695aec00b..",
+      btcAddress: "1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4x..",
+      fiatData1 : `4130372266\nBank central asia\nIndonesia\nZEND NOVI LANTY AFALOND`,
+      fiatData2 : `4130372274\nBank central asia\nIndonesia\nZEND NOVI LANTY AFALOND`
     };
   },
   methods: {
@@ -124,9 +167,16 @@ export default {
       if (this.pym == "eth") {
         this.pyme = "SPAN_19";
         this.pymb = "SPAN_25";
-      } else {
+        this.pymf = "SPAN_25";
+      } else if (this.pym == "btc") {
         this.pyme = "SPAN_25";
         this.pymb = "SPAN_19";
+        this.pymf = "SPAN_25";
+      } else if (this.pym == "fiat") {
+        this.pyme = "SPAN_25";
+        this.pymb = "SPAN_25";
+        this.pymf = "SPAN_19";
+      } else {
       }
     }
   }
