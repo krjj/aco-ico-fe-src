@@ -13,7 +13,7 @@
 
         <div id="tab-1" class="settings__content-item settings__profile active">
 
-            <form class="form settings-form">
+            <form class="form settings-form" v-on:submit.prevent>
 
                 <div class="form__row">
 
@@ -74,18 +74,18 @@
                         <div class="form__row">
                             <div class="form__col-xl">
                                 <select class="select-style" v-model="dobm">
-                                    <option value="January">January</option>
-                                    <option value="February">February</option>
-                                    <option value="March">March</option>
-                                    <option value="April">April</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option selected="" value="September">September</option>
-                                    <option value="October">October</option>
-                                    <option value="November">November</option>
-                                    <option value="December">December</option>
+                                    <option value="01">January</option>
+                                    <option value="02">February</option>
+                                    <option value="03">March</option>
+                                    <option value="04">April</option>
+                                    <option value="05">May</option>
+                                    <option value="06">June</option>
+                                    <option value="07">July</option>
+                                    <option value="08">August</option>
+                                    <option selected="" value="09">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
                                 </select>
                             </div>
                             <div class="form__col-sm">
@@ -296,7 +296,7 @@
 
                 </div>
 
-                <button class="btn btn--green">Save settings</button>
+                <button class="btn btn--green" @click="updateProfile()">Save settings</button>
                 <button class="btn btn--blue" style="margin-left:20px;cursor: not-allowed;opacity: 0.6;filter: grayscale(100%);">Change password</button>
             </form>
 
@@ -320,16 +320,48 @@ export default {
       firstname: this.$store.state.userdata.firstname,
       lastname: this.$store.state.userdata.lastname,
       email: this.$store.state.userdata.email,
-      dobd: "01",
-      dobm: "January",
-      doby: "1990",
-      address: "--",
-      country: "--",
-      city: "--",
-      postcode: "400001"
+      dobd: this.$store.state.userdata.bio.dob.dd,
+      dobm: this.$store.state.userdata.bio.dob.mm,
+      doby: this.$store.state.userdata.bio.dob.yyyy,
+      address: this.$store.state.userdata.bio.address.line,
+      country: this.$store.state.userdata.bio.address.country,
+      city: this.$store.state.userdata.bio.address.city,
+      postcode: this.$store.state.userdata.bio.address.postalcode
     };
   },
-  mounted() {}
+  mounted() {},
+  methods: {
+    updateProfile() {
+      const baseUrl = "http://18.223.178.250:3005";
+      axios.defaults.headers.common['Authorization'] = 'bearer ' + this.$store.state.auth.jwt
+      axios
+        .post(baseUrl + "/profile", {
+          email: this.$store.state.userdata.email,
+          dob_dd: this.dobd,
+          dob_mm: this.dobm,
+          dob_yyyy: this.doby,
+          address_line: this.address,
+          address_city: this.city,
+          address_country: this.country,
+          address_postalcode: this.postcode
+        })
+        .then(r => {
+          this.$noty.success("Profile updated");
+          this.$store.dispatch("UPDATEPROFILE", {
+            dob_dd: this.dobd,
+            dob_mm: this.dobm,
+            dob_yyyy: this.doby,
+            address_line: this.address,
+            address_city: this.city,
+            address_country: this.country,
+            address_postalcode: this.postcode
+          });
+        })
+        .catch(e => {
+          this.$noty.error("Error while updating profile");
+        });
+    }
+  }
 };
 </script>
 

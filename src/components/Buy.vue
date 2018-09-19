@@ -6,7 +6,7 @@
 
                 </div>
 
-                <div class="buy__body">
+                <div class="buy__body" style="padding-top:15px">
 
                     <div class="payment">
                         <div id="DIV_1">
@@ -19,9 +19,10 @@
                                         <div id="DIV_7">
                                             <div id="DIV_8">
                                                 <div id="DIV_9">
-                                                    <input type="text" value="0x1BC19BE4A7543a76Edf5d636EFC95d554c447A27" name="address" id="INPUT_10" />
+                                                    <input type="text"  v-model="ethaddress" name="address" id="INPUT_10" />
                                                 </div>
                                                 <div id="DIV_11">
+                                                  <button id="A_35" v-on:click="setAddress()">Set Address</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -158,9 +159,19 @@ export default {
       pymf: "SPAN_25",
       ethAddress: "0x4137ad3f84ac257efb9b1d844bd2a5695aec00b..",
       btcAddress: "1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4x..",
-      fiatData1 : `4130372266\nBank central asia\nIndonesia\nZEND NOVI LANTY AFALOND`,
-      fiatData2 : `4130372274\nBank central asia\nIndonesia\nZEND NOVI LANTY AFALOND`
+      fiatData1: `4130372266\nBank central asia\nIndonesia\nZEND NOVI LANTY AFALOND`,
+      fiatData2: `4130372274\nBank central asia\nIndonesia\nZEND NOVI LANTY AFALOND`
     };
+  },
+  computed: {
+    ethaddress: {
+      get: function() {
+        return this.$store.state.userdata.userEthAddress;
+      },
+      set: function(newADDR) {
+        this.$store.dispatch("ETHADDRESSUPDATE", newADDR);
+      }
+    }
   },
   methods: {
     pys() {
@@ -178,6 +189,9 @@ export default {
         this.pymf = "SPAN_19";
       } else {
       }
+    },
+    setAddress() {
+      this.$store.dispatch("SETADDRESS", { noty: this.$noty });
     }
   }
 };
