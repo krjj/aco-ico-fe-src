@@ -62,7 +62,7 @@
             </div>
 
             <a class="logo">
-                <img style="height:64px" src="../assets/img/sitelogo.png" alt="">
+                <img style="height:64px" src="logo.svg" alt="">
                 <span class="logo__text"  style="margin-left: 10px"></span>
             </a>
 
