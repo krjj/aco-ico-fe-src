@@ -332,7 +332,7 @@ export default {
   mounted() {},
   methods: {
     updateProfile() {
-      const baseUrl = "http://18.223.178.250:3005";
+      const baseUrl = "http://13.250.162.162:3000";
       axios.defaults.headers.common['Authorization'] = 'bearer ' + this.$store.state.auth.jwt
       axios
         .post(baseUrl + "/profile", {
@@ -358,7 +358,7 @@ export default {
           });
         })
         .catch(e => {
-          this.$noty.error("Error while updating profile");
+          this.$noty.error("Error while updating profile - " + e.response.data.message);
         });
     }
   }

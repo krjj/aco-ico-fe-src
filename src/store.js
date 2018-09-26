@@ -4,7 +4,7 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const baseUrl = "http://18.223.178.250:3005"
+const baseUrl = "http://13.250.162.162:3000"
 //const baseUrl = "http://0.0.0.0:3000"
 
 
@@ -49,19 +49,23 @@ export default new Vuex.Store({
   actions: {
     LOGIN: (context, payload) => {
       console.log(payload)
+      
       axios.get(baseUrl + '/login', {
         params: {
           email: payload.email,
           password: payload.password
-        }
+        },
+        crossdomain: true,
+        withCredentials: false,
+        timeout : 10000
       }).then((r) => {
         context.commit('LOGIN', r.data.data);
         payload.router.push({
           path: '/dashboard'
         })
       }).catch((e) => {
-        console.log(e)
-        payload.noty.error("Cannot login " + e);
+        console.log(e.response)
+        payload.noty.error("Cannot login " + e.response.data.message);
       })
     },
 
@@ -76,7 +80,7 @@ export default new Vuex.Store({
         payload.noty.success("New account created");
         context.commit('SIGNUP', r.data.data);
       }).catch((e) => {
-        payload.noty.error("Cannot login " + e);
+        payload.noty.error("Cannot signup -  " + e.response.data.message);
       })
     },
 
@@ -103,7 +107,7 @@ export default new Vuex.Store({
       }).then((r) => {
         payload.noty.success("Eth address updated");
       }).catch((e) => {
-        payload.noty.error("Error while updating eth address");
+        payload.noty.error("Provide valid ETH address");
       })
     }
   }

@@ -146,6 +146,7 @@
 </template>
 
 <script>
+
 export default {
   name: "Buy",
   props: {
