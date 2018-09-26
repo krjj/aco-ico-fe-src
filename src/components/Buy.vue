@@ -198,7 +198,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import "../assets/css/main.min.css";
 
 #DIV_1 {
