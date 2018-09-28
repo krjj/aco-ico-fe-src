@@ -3,8 +3,8 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 Vue.use(Vuex)
+const baseUrl = process.env.VUE_APP_API_URL
 
-const baseUrl = "http://13.250.162.162:3000"
 //const baseUrl = "http://0.0.0.0:3000"
 
 
@@ -52,7 +52,7 @@ export default new Vuex.Store({
       
       axios.get(baseUrl + '/login', {
         params: {
-          email: payload.email,
+          email: payload.email.toLowerCase(),
           password: payload.password
         },
         crossdomain: true,
@@ -74,7 +74,7 @@ export default new Vuex.Store({
       axios.post(baseUrl + '/signup', {
         firstname: payload.firstname,
         lastname: payload.lastname,
-        email: payload.email,
+        email: payload.email.toLowerCase(),
         password: payload.password
       }).then((r) => {
         payload.noty.success("New account created");

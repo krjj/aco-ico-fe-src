@@ -332,7 +332,7 @@ export default {
   mounted() {},
   methods: {
     updateProfile() {
-      const baseUrl = "http://13.250.162.162:3000";
+      const baseUrl = process.env.VUE_APP_API_URL;
       axios.defaults.headers.common['Authorization'] = 'bearer ' + this.$store.state.auth.jwt
       axios
         .post(baseUrl + "/profile", {
