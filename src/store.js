@@ -43,13 +43,13 @@ export default new Vuex.Store({
       state.userdata.bio.address.line = message.address_line
       state.userdata.bio.address.city = message.address_city
       state.userdata.bio.address.country = message.address_country
-      state.userdata.bio.address.postalcode =  message.address_postalcode
+      state.userdata.bio.address.postalcode = message.address_postalcode
     }
   },
   actions: {
     LOGIN: (context, payload) => {
       console.log(payload)
-      
+
       axios.get(baseUrl + '/login', {
         params: {
           email: payload.email.toLowerCase(),
@@ -57,7 +57,7 @@ export default new Vuex.Store({
         },
         crossdomain: true,
         withCredentials: false,
-        timeout : 10000
+        timeout: 10000
       }).then((r) => {
         context.commit('LOGIN', r.data.data);
         payload.router.push({
@@ -70,16 +70,30 @@ export default new Vuex.Store({
     },
 
     SIGNUP: (context, payload) => {
-      console.log(payload)
+      payload.noty.info("Signing up....", {
+        timeout: 2000
+      });
+      console.log(payload.noty)
       axios.post(baseUrl + '/signup', {
         firstname: payload.firstname,
         lastname: payload.lastname,
         email: payload.email.toLowerCase(),
         password: payload.password
       }).then((r) => {
-        payload.noty.success("New account created");
-        context.commit('SIGNUP', r.data.data);
+        payload.noty.success("New account created.<br/>Redirecting to dashboard page.", {
+          timeout: 3000
+        });
+        setTimeout(() => {
+          payload.store.dispatch("LOGIN", {
+            email: payload.email,
+            password: payload.password,
+            noty: payload.noty,
+            router: payload.router
+          });
+          //payload.router.replace({ path: "/" });
+        }, 4000)
       }).catch((e) => {
+        console.log(e)
         payload.noty.error("Cannot signup -  " + e.response.data.message);
       })
     },

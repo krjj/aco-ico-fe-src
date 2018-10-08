@@ -105,13 +105,14 @@ export default {
 			}
 			
       if (flag == true && flag1 == true && flag2 == true) {
-				this.$noty.info("Signing up....");
          this.$store.dispatch("SIGNUP", {
           firstname: this.firstname,
           lastname: this.lastname,
           email: this.email,
 					password: this.password,
-					noty : this.$noty
+					noty : this.$noty,
+					router : this.$router,
+					store : this.$store
         });
       }
     }

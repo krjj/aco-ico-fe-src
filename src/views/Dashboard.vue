@@ -188,6 +188,8 @@ export default {
   },
   mounted() {
     console.log('mounted : ', )
+    var viewport = document.querySelector("meta[name=viewport]");
+    viewport.setAttribute('content', 'width=1440');
      if(this.$store.state.auth.jwt=='') {
         this.$router.replace({ path: "/" });
     }

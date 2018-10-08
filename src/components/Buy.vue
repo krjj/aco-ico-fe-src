@@ -12,21 +12,7 @@
                         <div id="DIV_1">
                             <div id="DIV_2">
                                 <div id="DIV_3">
-                                    <div id="DIV_5">
-                                        <label for="c380af47_address" id="LABEL_6">
-                                            Your ethereum wallet address to receive tokens
-                                        </label>
-                                        <div id="DIV_7">
-                                            <div id="DIV_8">
-                                                <div id="DIV_9">
-                                                    <input type="text"  v-model="ethaddress" name="address" id="INPUT_10" />
-                                                </div>
-                                                <div id="DIV_11">
-                                                  <button id="A_35" v-on:click="setAddress()">Set Address</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
 
                                     <div id="DIV_13">
                                         <label for="c380af47_address" id="LABEL_14">
@@ -35,7 +21,7 @@
                                         <div id="DIV_15">
                                             <div id="DIV_16">
                                                 <label id="LABEL_17">
-                                                    <input type="radio" name="paymentmethod" value="eth" id="INPUT_18" v-model="pym" v-on:change="pys()" />
+                                                    <input type="radio" name="paymentmethod" value="eth" id="INPUT_18" v-model="pym" v-on:change="pys()"/>
                                                     <span v-bind:id="pyme"></span>
                                                     <span id="SPAN_20">ETH</span>
                                                 </label>
@@ -61,30 +47,32 @@
                                     <div id="DIV_27" v-show="pym === 'eth'">
                                         <div id="DIV_28">
                                             <label for="c380af47_eth-address" id="LABEL_29">
-                                                Send ETH to this address to get token
+                                                Send ETH to this address to get ACO token
                                             </label>
                                             <div id="DIV_30">
                                                 <div id="DIV_31">
                                                     <div id="DIV_32">
-                                                        <input type="text" v-model="ethAddress" name="eth-address" id="INPUT_33" />
+                                                        <input type="text" v-model="ethAddress" name="eth-address" id="INPUT_33" readonly/>
                                                     </div>
                                                     <div id="DIV_34">
                                                         <button v-clipboard:copy="ethAddress" id="A_35">Copy</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="DIV_36">
-                                                Recommended gas price is 10 Gwei. You will be able to get tokens right after purchase.
+                                            <div id="DIV_52">
+                                                You will be able to get tokens right after purchase. Token will be deposited to the same ETH address from which transfer was done.<br/>
+                                                Click on below link to learn how to transfer ETH. Note : Use only Metamask or Myetherwallet for the transfer.
                                             </div>
+                                            <br>
                                             <div id="DIV_36">
-                                                <a href="https://coinsutra.com/myetherwallet-step-step-introduction-guide-beginners/">Instructions to use MyEtherWallet for transfer</a>
+                                                <a href="https://coinsutra.com/myetherwallet-step-step-introduction-guide-beginners/" target="__blank">Instructions to use MyEtherWallet for transfer</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div id="DIV_43" v-show="pym === 'btc'">
                                         <div id="DIV_44">
                                             <label for="c380af47_btc-address" id="LABEL_45">
-                                                Send BTC to this address to get token
+                                                Send BTC to this address to get ACO token
                                             </label>
                                             <div id="DIV_46">
                                                 <div id="DIV_47">
@@ -98,8 +86,24 @@
                                             </div>
                                             <div id="DIV_52">
                                                 Recommended fee is 0.0005 BTC. You will be able to get tokens right after purchase.
-                                                <br
-                                                    id="BR_53" />1 ETH ~ 0.03645 BTC
+                                                <br id="BR_53" />1 ACO ~ 0.000 BTC
+                                            </div>
+                                            <br/>
+                                            <label for="c380af47_btc-address" id="LABEL_45">
+                                                Set ETH address to receive the ACO token
+                                            </label>
+                                            <div id="DIV_7">
+                                              <div id="DIV_8">
+                                                <div id="DIV_9">
+                                                    <input type="text"  v-model="ethaddress" name="address" id="INPUT_10" />
+                                                </div>
+                                                <div id="DIV_11">
+                                                  <button id="A_35" v-on:click="setAddress()">Set Address</button>
+                                                </div>
+                                              </div>
+                                              <div id="DIV_52">
+                                                The ACO token will be deposited to this address
+                                              </div>
                                             </div>
                                         </div>
                                     </div>
@@ -158,10 +162,10 @@ export default {
       pyme: "SPAN_19",
       pymb: "SPAN_25",
       pymf: "SPAN_25",
-      ethAddress: "0x4137ad3f84ac257efb9b1d844bd2a5695aec00b..",
-      btcAddress: "1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4x..",
-      fiatData1: `4130372266\nBank central asia\nIndonesia\nZEND NOVI LANTY AFALOND`,
-      fiatData2: `4130372274\nBank central asia\nIndonesia\nZEND NOVI LANTY AFALOND`
+      ethAddress: process.env.VUE_APP_ETH_SEND_ADDRESS,
+      btcAddress: process.env.VUE_APP_BTC_ADDRESS,
+      fiatData1: process.env.VUE_APP_FIAT_ADDRESS1.replace(/\\n/g, '\n'),
+      fiatData2: process.env.VUE_APP_FIAT_ADDRESS2.replace(/\\n/g, '\n')
     };
   },
   computed: {
@@ -405,8 +409,6 @@ export default {
   perspective-origin: 246.109px 26.625px;
   transform-origin: 246.109px 26.625px;
   caret-color: rgb(84, 84, 84);
-  background: rgb(250, 250, 250) none repeat scroll 0% 0% / auto padding-box
-    border-box;
   border: 1px solid rgb(224, 230, 237);
   border-radius: 4px 4px 4px 4px;
   font: normal normal 400 normal 14px / normal "Avenir Next", "Avenir Next Cyr",
@@ -600,7 +602,7 @@ export default {
   bottom: 4px;
   box-sizing: border-box;
   color: rgb(49, 57, 67);
-  content: '"' '"';
+  content: '';
   cursor: pointer;
   display: block;
   height: 10px;
@@ -881,6 +883,7 @@ export default {
   width: 492.219px;
   perspective-origin: 246.109px 26.625px;
   transform-origin: 246.109px 26.625px;
+  background-color: #f7f8fb;
   border: 1px solid rgb(224, 230, 237);
   border-radius: 4px 4px 4px 4px;
   font: normal normal 400 normal 14px / normal "Avenir Next", "Avenir Next Cyr",
