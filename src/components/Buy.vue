@@ -64,6 +64,12 @@
                                                 Click on below link to learn how to transfer ETH. Note : Use only Metamask or Myetherwallet for the transfer.
                                             </div>
                                             <br>
+                                            <div id="DIV_52" style="color: green">
+                                                1 ETH = 100 ACO Coin 
+                                                <br>
+                                                1 ACO Coin = 0.01 ETH
+                                            </div>
+                                            <br>
                                             <div id="DIV_36">
                                                 <a href="https://coinsutra.com/myetherwallet-step-step-introduction-guide-beginners/" target="__blank">Instructions to use MyEtherWallet for transfer</a>
                                             </div>
