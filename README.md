@@ -1,5 +1,7 @@
 # ico-fe
 
+ICO Dashboard Frontend - vue app
+
 ## Project setup
 ```
 yarn install
